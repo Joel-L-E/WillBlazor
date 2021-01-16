@@ -1,15 +1,37 @@
 ﻿@page "/post/create"
+@using MudBlazor
 @inject IPostRepository postRepository
+@inject IPictureRepository picRepository
 @inject NavigationManager navigationManager  
+<div class="container">
+    <h3>New Post</h3>
 
-<h3>Add an Author</h3>
+    <PostForm Post="post" OnValidSubmit="Create" />
 
-<PostForm Post="post" OnValidSubmit="Create" />
+    <br />
+    <br />
+    <h4>Pictures</h4>
+    <br />
+    <br />
 
+    <button class="btn btn-success" @onclick="IncrementPics">New Picture</button>
+    @foreach (Picture p in Picz)
+    {
+        <PictureForm Picture="p" OnValidSubmit2="CreatePicture" />
+        <br />
+    }
+
+</div>
 
 
 @code {
     private Post post = new Post();
+
+    private List<Picture> Picz { get; set; } = new List<Picture>();
+
+    private int numPics = 0;
+
+    public IDictionary<string, Picture> PhotoDict = new Dictionary<string, Picture>();
 
     private async Task Create()
     {
@@ -25,4 +47,24 @@
         }
     }
 
+    private async Task CreatePicture()
+    {
+        Console.WriteLine("Create Method");
+        try
+        {
+
+            Picture picture = Picz[numPics];
+            await picRepository.CreatePicture(picture);
+            numPics++;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private void IncrementPics()
+    {
+        Picz.Add(new Picture());
+    }
 }

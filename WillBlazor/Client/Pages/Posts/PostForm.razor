@@ -8,6 +8,13 @@
         </div>
     </div>
     <div class="form-group">
+        <label>Author:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Post.AuthorName" />
+            <ValidationMessage For="@(() => Post.AuthorName)" />
+        </div>
+    </div>
+    <div class="form-group">
         <label>Summarize Text:</label>
         <div>
             <InputTextArea class="form-control" @bind-Value="@Post.Summary" />
@@ -24,20 +31,17 @@
     <div class="form-group">
         <label>Section:</label>
         <div>
-            <InputTextArea class="form-control" @bind-Value="@Post.Section" />
+            <InputSelect class="form-control" @bind-Value="@Post.Section">
+                <option value=""></option>
+                <option value="bengals">Bengals</option>
+                <option value="reds">Reds</option>
+                <option value="cavaliers">Cavaliers</option>
+                <option value="hawkeyes">Hawkeyes</option>
+                <option value="raiders">Raiders</option>
+            </InputSelect>
             <ValidationMessage For="(() => Post.Section)" />
         </div>
     </div>
-    <div class="form-group">
-        <label>Type of Post:</label>
-        <div>
-            <InputNumber class="form-control" @bind-Value="@Post.TypeOfPost" />
-
-            <ValidationMessage For="(() => Post.TypeOfPost)" />
-        </div>
-    </div>
-
-
     <button class="btn btn-success" type="submit">Save Changes</button>
 </EditForm>
 

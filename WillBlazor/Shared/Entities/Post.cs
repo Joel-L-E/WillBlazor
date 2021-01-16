@@ -12,13 +12,15 @@ namespace WillBlazor.Shared.Entities
         [JsonPropertyName("id")]
         public int Id { get; set; }
         [JsonPropertyName("datePosted")]
-        public DateTime DatePosted { get; set; }
+        public string DatePosted { get; set; }
+        [JsonPropertyName("authorName")]
+        public string AuthorName { get; set; }
         [JsonPropertyName("title")]
         public string Title { get; set; }
         [JsonPropertyName("content")]
-        public string Content { get; set; } = "Yeehaw mother truckers its time to build a syte!!!!";
+        public string Content { get; set; }
         [JsonPropertyName("typeOfPost")]
-        public int TypeOfPost { get; set; }
+        public int TypeOfPost { get; set; } = 1;
         [JsonPropertyName("section")]
         public string Section { get; set; }
         [JsonPropertyName("summary")]
@@ -26,7 +28,7 @@ namespace WillBlazor.Shared.Entities
 
         public Post()
         {
-            this.DatePosted = DateTime.Today;
+            this.DatePosted = DateTime.Today.ToString("MMMM d, yyyy");
         }
     }
 }

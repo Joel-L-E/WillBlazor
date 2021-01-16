@@ -1,10 +1,17 @@
-﻿@page "/bengals/article/{ArticleId:int}" 
+﻿@page "/bengals/article/{ArticleId:int}"
 
-<ArticleHeader PostId="@ArticleId"/>
-
+<div class="container" style="font-size:1.25rem">
+    <br />
+    <br />
+    <div class="float-left text-left" style="width:50%;">
+        <ArticleContent PostId="@ArticleId" />
+    </div>
+    <div class="float-right text-center sidebar" style="width:35%; margin-left: 10px;">
+        <ArticleSidebar />    
+    </div>
+</div>
 
 @code {
-
     [Parameter] public int ArticleId { get; set; }
     public static int ArtId { get; set; }
 
@@ -12,5 +19,4 @@
     {
         ArtId = ArticleId;
     }
-
 }

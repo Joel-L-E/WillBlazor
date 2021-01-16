@@ -18,8 +18,7 @@ namespace WillBlazor.Shared.ApiHelpers
             var client = new HttpClient();
             Url += id.ToString();
             string json = await client.GetStringAsync(Url);
-            var post = new Post();
-            post = JsonSerializer.Deserialize<Post>(json); ;
+            var post = JsonSerializer.Deserialize<Post>(json); ;
             return post;
         }
 

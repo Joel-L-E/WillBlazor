@@ -26,6 +26,7 @@ namespace WillBlazor.Client.Repository
             }
             return response.Response;
         }
+
         public async Task<Post> GetPost(int Id)
         {
             var response = await httpService.Get<Post>($"{Url}/{Id}");

@@ -1,16 +1,20 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page text-center">
-    <NavBar />
-    <div class="main" style="align-items:center; align-content: center;">
-        <div style="background-color: #0e1111;" class="top-row px-4 auth">
-            
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
 
+<div class="page text-center">
+    <div class="main" style="align-items:center; align-content: center;">
+        @*<div style="background-color: #0e1111;" class="top-row px-4 auth">
+
+                <LoginDisplay />
+                <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            </div>*@
+        <NavBar />
         <div style="padding-bottom: 0; margin-bottom:0; height:100%; align-items:center; align-content: center;" class="content px-4">
             @Body
         </div>
     </div>
 </div>
+
+@code{
+
+}

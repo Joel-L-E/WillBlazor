@@ -1,0 +1,24 @@
+﻿@inject IPictureRepository picRepo
+@using WillBlazor.Shared.ApiHelpers
+
+
+@if (Picture != null)
+{
+    <div style="width:50%;height: 400px;margin:auto">
+        <img style="height:100%;width:100%;" src="@Picture.PictureUrl" />
+    </div>
+        
+}
+
+
+@code {
+    [Parameter] public int PictureId { get; set; }
+
+    public Picture Picture;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        Picture = await PictureApiHelper.GetPictureAsync(PictureId);
+    }
+}

@@ -1,0 +1,83 @@
+﻿@using WillBlazor.Shared.ApiHelpers
+@inject IPictureRepository picRepo
+
+<div style="width:125%;margin-right:0;margin-left:0;">
+
+    @if (paragraphs != null)
+    {
+        <div class="w-100">
+            <h1>@post.Title</h1>
+            <h5>@post.Summary</h5>
+            <br />
+            <p> <a href="#">@post.AuthorName</a> | @post.DatePosted | <a href="#">Go to comments</a></p>
+        </div>
+        <hr />
+
+        @foreach (string p in paragraphs)
+        {
+            if (p.StartsWith(">>i"))
+            {
+                try
+                {
+                    var q = p.Remove(0, 3);
+                    int qq = Convert.ToInt32(q);
+                    <RenderPicture PictureId="@qq" />
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            if (p.StartsWith(">>b"))
+            {
+                var r = p.Remove(0, 3);
+
+                <p style="font-size:2.5rem" class="text-center">
+                    <strong>@r</strong>
+                </p>
+            }
+            if (p.Contains(">>"))
+            {
+                <br />
+            }
+            else
+            {
+                <p>
+                    @p
+                </p>
+            }
+        }
+    }
+    else
+    {
+        <br />
+        <br />
+        <br />
+        <Text>Loading Article...</Text>
+    }
+
+</div>
+
+@code {
+    [Parameter] public int PostId { get; set; }
+    public Post post { get; set; } = new Post();
+    public string[] paragraphs { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        post = await PostApiHelper.GetPostAsync(PostId);
+
+        paragraphs = post.Content.Split("---");
+
+        foreach (var p in paragraphs)
+        {
+            Console.WriteLine(p);
+        }
+    }
+    
+    
+
+    
+
+}
