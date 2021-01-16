@@ -1,0 +1,28 @@
+﻿@page "/post/create"
+@inject IPostRepository postRepository
+@inject NavigationManager navigationManager  
+
+<h3>Add an Author</h3>
+
+<PostForm Post="post" OnValidSubmit="Create" />
+
+
+
+@code {
+    private Post post = new Post();
+
+    private async Task Create()
+    {
+        Console.WriteLine("Create Method");
+        try
+        {
+            await postRepository.CreatePost(post);
+            navigationManager.NavigateTo("posts");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+}

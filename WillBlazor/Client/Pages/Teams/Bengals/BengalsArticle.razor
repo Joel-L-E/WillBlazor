@@ -1,0 +1,16 @@
+﻿@page "/bengals/article/{ArticleId:int}" 
+
+<ArticleHeader PostId="@ArticleId"/>
+
+
+@code {
+
+    [Parameter] public int ArticleId { get; set; }
+    public static int ArtId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ArtId = ArticleId;
+    }
+
+}

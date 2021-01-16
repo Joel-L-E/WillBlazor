@@ -1,0 +1,19 @@
+﻿@using WillBlazor.Shared.ApiHelpers 
+
+
+
+<div>
+    @post.Content
+</div>
+
+@code {
+    [Parameter] public int PostId { get; set; }
+    public Post post { get; set; } = new Post();
+
+    protected async override Task OnInitializedAsync()
+    {
+        post = await PostApiHelper.GetPostAsync(PostId);
+    }
+
+
+}

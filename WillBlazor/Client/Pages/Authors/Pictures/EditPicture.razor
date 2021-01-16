@@ -1,0 +1,30 @@
+﻿@page "/picture/edit/{PictureId:int}"
+@inject IPictureRepository pictureRepository
+@inject NavigationManager navigationManager
+
+
+<h3>Edit Post</h3>
+
+@if (picture != null)
+{
+    <PictureForm Picture="picture" OnValidSubmit="Edit" />
+}
+
+
+
+@code {
+    [Parameter] public int PictureId { get; set; }
+    public Picture picture;
+
+    protected override async Task OnInitializedAsync()
+    {
+        picture = await pictureRepository.GetPicture(PictureId);
+    }
+
+    private void Edit()
+    {
+        pictureRepository.UpdatePicture(picture);
+        navigationManager.NavigateTo("/pictures");
+    }
+
+}

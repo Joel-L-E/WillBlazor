@@ -1,0 +1,27 @@
+﻿@page "/author/create"
+@inject IAuthorRepository authorRepository
+@inject NavigationManager navigationManager  
+
+<h3>Add an Author</h3>
+
+<AuthorForm Author="author" OnValidSubmit="Create" />
+
+@code {
+    private Author author = new Author();
+
+    private async Task Create()
+    {
+        Console.WriteLine("Create Method");
+        Console.WriteLine(author.FirstName);
+        try
+        {
+            await authorRepository.CreateAuthor(author);
+            navigationManager.NavigateTo("authors");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+}

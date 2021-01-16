@@ -1,0 +1,63 @@
+﻿@page "/pictures"
+@inject IPictureRepository pictureRepository
+
+<h3>Index Pictures</h3>
+
+<div class="form-group">
+    <a class="btn btn-success" href="picture/create">New Picture</a>
+</div>
+
+<GenericList List="Pictures">
+    <WholeListTemplate>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Author</th>
+                    <th>DatePosted</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pic in Pictures)
+                {
+    <tr>
+        <td>@pic.Id</td>
+        <td>@pic.PictureUrl</td>
+        <td>@pic.HeightPx</td>
+        <td>@pic.WidthPx</td>
+        <td>
+            <a class="btn btn-success" href="/post/edit/@pic.Id">Edit</a>
+            <button class="btn btn-danger" @onclick="@(() => pictureRepository.DeletePicture(pic.Id))">Delete</button>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+    </WholeListTemplate>
+</GenericList>
+
+
+
+
+@code {
+    List<Picture> Pictures;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Pictures = await pictureRepository.GetPictures();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message); 
+        }
+    }
+
+    private async Task DeletePost(int Id)
+    {
+        await pictureRepository.DeletePicture(Id);
+        Pictures = await pictureRepository.GetPictures();
+    }
+}

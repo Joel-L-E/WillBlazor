@@ -1,0 +1,31 @@
+﻿@page "/post/edit/{PostId:int}"
+@inject IPostRepository postRepository
+@inject NavigationManager navigationManager
+
+
+<h3>Edit Post</h3>
+
+@if (post != null)
+{
+    <PostForm Post="post" OnValidSubmit="Edit" />
+    @post.Id
+}
+
+
+
+@code {
+    [Parameter] public int PostId { get; set; }
+    public Post post;
+
+    protected override async Task OnInitializedAsync()
+    {
+        post = await postRepository.GetPost(PostId);
+    }
+
+    private void Edit()
+    {
+        postRepository.UpdatePost(post);
+        navigationManager.NavigateTo("/posts");
+    }
+
+}

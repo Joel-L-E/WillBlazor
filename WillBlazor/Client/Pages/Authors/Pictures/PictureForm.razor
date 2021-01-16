@@ -1,0 +1,34 @@
+﻿<EditForm Model="Picture" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>Picture Url:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Picture.PictureUrl" />
+            <ValidationMessage For="@(() => Picture.PictureUrl)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Height (px):</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@Picture.HeightPx" />
+            <ValidationMessage For="(() => Picture.HeightPx)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Width (px):</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@Picture.WidthPx" />
+                
+            <ValidationMessage For="(() => Picture.WidthPx)" />
+        </div>
+    </div>
+    
+
+    <button class="btn btn-success" type="submit">Save Changes</button>
+</EditForm>
+
+@code {
+    [Parameter] public Picture Picture { get; set; }
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}

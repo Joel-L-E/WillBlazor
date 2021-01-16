@@ -1,0 +1,63 @@
+﻿@page "/authors"
+@inject IAuthorRepository authorRepository
+
+<h3>IndexAuthor</h3>
+
+<div class="form-group">
+    <a class="btn btn-success" href="author/create">New Author</a>
+</div>
+
+<GenericList List="Authors">
+    <WholeListTemplate>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var person in Authors)
+                {
+    <tr>
+        <td>@person.FirstName</td>
+        <td>@person.LastName</td>
+        <td>@person.HometownCity</td>
+        <td>@person.HometownState</td>
+        <td>
+            <a class="btn btn-success" href="/genre/edit/@person.Id">Edit</a>
+            <button class="btn btn-danger" @onclick="@(() => DeleteAuthor(person.Id))">Delete</button>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+    </WholeListTemplate>
+</GenericList>
+
+
+
+
+@code {
+    List<Author> Authors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Authors = await authorRepository.GetAuthors();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message); 
+        }
+    }
+
+    private async Task DeleteAuthor(int Id)
+    {
+        await authorRepository.DeleteAuthor(Id);
+        Authors = await authorRepository.GetAuthors();
+    }
+}

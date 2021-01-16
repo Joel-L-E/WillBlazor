@@ -1,0 +1,18 @@
+﻿@page "/post/view/{PostId:int}"
+@inject IPostRepository postRepository
+@inject NavigationManager navigationManager
+
+
+
+
+@code {
+    [Parameter] public int PostId { get; set; }
+    public Post post;
+
+    protected override async Task OnInitializedAsync()
+    {
+        post = await postRepository.GetPost(PostId);
+    }
+
+
+}

@@ -1,0 +1,48 @@
+﻿<EditForm Model="Post" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>Title:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Post.Title" />
+            <ValidationMessage For="@(() => Post.Title)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Summarize Text:</label>
+        <div>
+            <InputTextArea class="form-control" @bind-Value="@Post.Summary" />
+            <ValidationMessage For="(() => Post.Summary)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Content:</label>
+        <div>
+            <InputTextArea class="form-control" @bind-Value="@Post.Content" />
+            <ValidationMessage For="(() => Post.Content)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Section:</label>
+        <div>
+            <InputTextArea class="form-control" @bind-Value="@Post.Section" />
+            <ValidationMessage For="(() => Post.Section)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Type of Post:</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@Post.TypeOfPost" />
+
+            <ValidationMessage For="(() => Post.TypeOfPost)" />
+        </div>
+    </div>
+
+
+    <button class="btn btn-success" type="submit">Save Changes</button>
+</EditForm>
+
+@code {
+    [Parameter] public Post Post { get; set; }
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}

@@ -1,0 +1,68 @@
+﻿@page "/posts"
+@inject IPostRepository postRepository
+
+<h3>Index Post</h3>
+
+<div class="form-group">
+    <a class="btn btn-success" href="post/create">New Posts</a>
+</div>
+
+<GenericList List="Posts">
+    <WholeListTemplate>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author Name</th>
+                    <th>Section</th>
+                    <th>Date Posted</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var post in Posts)
+                {
+    <tr>
+        <td>@post.Id</td>
+        <td>@post.Title</td>
+        <td>Joel</td>
+        <td>@post.Section</td>
+        <td>@post.DatePosted</td>
+        <td></td>
+        <td>
+            <a class="btn btn-success" href="/post/edit/@post.Id">Edit</a>
+            <button class="btn btn-danger" @onclick="@(() => postRepository.DeletePost(post.Id))">Delete</button>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+    </WholeListTemplate>
+</GenericList>
+
+
+
+@code {
+    List<Post> Posts;
+    Post Post;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Posts = await postRepository.GetPosts();
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private async Task DeletePost(int Id)
+    {
+        await postRepository.DeletePost(Id);
+        Posts = await postRepository.GetPosts();
+    }
+}

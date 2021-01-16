@@ -1,0 +1,27 @@
+﻿@page "/picture/create"
+@inject IPictureRepository pictureRepository
+@inject NavigationManager navigationManager  
+
+<h3>Add a Picture!</h3>
+
+<PictureForm Picture="picture" OnValidSubmit="Create" />
+
+@code {
+    private Picture picture = new Picture();
+
+    private async Task Create()
+    {
+        Console.WriteLine("Create Method");
+        
+        try
+        {
+            await pictureRepository.CreatePicture(picture);
+            navigationManager.NavigateTo("pictures");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+}

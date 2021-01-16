@@ -1,0 +1,30 @@
+﻿@page "/author/edit/{AuthorId:int}"
+@inject IAuthorRepository authorRepository
+@inject NavigationManager navigationManager
+
+
+<h3>EditAuthor</h3>
+
+@if (author != null)
+{
+    <AuthorForm Author="author" OnValidSubmit="Edit" />
+}
+
+
+
+@code {
+    [Parameter] public int AuthorId { get; set; }
+    public Author author;
+
+    protected override async Task OnInitializedAsync()
+    {
+        author = await authorRepository.GetAuthor(AuthorId);
+    }
+
+    private void Edit()
+    {
+        authorRepository.UpdateAuthor(author);
+        navigationManager.NavigateTo("/authors");
+    }
+
+}
