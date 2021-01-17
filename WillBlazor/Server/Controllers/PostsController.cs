@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using WillBlazor.Shared.Entities;
 namespace WillBlazor.Server.Controllers
 {
     
+        [AllowAnonymous]
         [ApiController]
         [Route("api/[controller]")]
         public class PostsController : ControllerBase
@@ -21,11 +23,13 @@ namespace WillBlazor.Server.Controllers
                 this.context = context;
             }
 
+            
             [HttpGet]
             public async Task<ActionResult<List<Post>>> Get()
             {
                 return await context.Posts.ToListAsync();
             }
+
 
             [HttpGet("{id}")]
             public async Task<ActionResult<Post>> Get(int id)
@@ -35,7 +39,7 @@ namespace WillBlazor.Server.Controllers
                     return NotFound();
                 return post;
             }
-
+            
             [HttpPost]
             public async Task<ActionResult<int>> Post(Post post)
             {

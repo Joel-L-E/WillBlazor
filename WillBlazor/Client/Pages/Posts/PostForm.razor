@@ -15,6 +15,13 @@
         </div>
     </div>
     <div class="form-group">
+        <label>Thumbnail [Find a square picture link]</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Post.Thumbnail" />
+            <ValidationMessage For="@(() => Post.Thumbnail)" />
+        </div>
+    </div>
+    <div class="form-group">
         <label>Summarize Text:</label>
         <div>
             <InputTextArea class="form-control" @bind-Value="@Post.Summary" />
@@ -34,10 +41,12 @@
             <InputSelect class="form-control" @bind-Value="@Post.Section">
                 <option value=""></option>
                 <option value="bengals">Bengals</option>
-                <option value="reds">Reds</option>
+                <option value="browns">Browns</option>
                 <option value="cavaliers">Cavaliers</option>
                 <option value="hawkeyes">Hawkeyes</option>
-                <option value="raiders">Raiders</option>
+                <option value="ohiostate">Ohio State</option>
+                <option value="reds">Reds</option>
+                <option value="raiders">Wright State</option>
             </InputSelect>
             <ValidationMessage For="(() => Post.Section)" />
         </div>

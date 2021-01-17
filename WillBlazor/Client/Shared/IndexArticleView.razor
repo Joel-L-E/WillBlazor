@@ -1,15 +1,45 @@
 ﻿
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            sup bitchez
-        </div>
-        <div class="card-body">
-            sup bitch ass bitchessss
-        </div>
-    </div>
-</div>
+
+
+    @if (SortedPosts != null)
+    {
+        foreach (var p in SortedPosts)
+        {
+            string url = @"https://localhost:44389/bengals/article/";
+            string temp = url + p.Id.ToString();
+                <div style="width:35%; margin:auto; margin-bottom:2rem;" class="card">
+                    <div class="card-header">
+                        @p.Title
+                    </div>
+                    <a href="@temp">
+                        <div class="card-body">
+                            <img src="@p.Thumbnail" style="height:7.5rem;width:7.5rem;" />
+                        </div>
+                        <div class="card-body">
+                            @p.Summary
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        @p.DatePosted
+                    </div>
+                </div>
+            
+        }
+    }
+
+
+
+
 
 @code {
-   // [Parameter] public Post Post { get; set; }
+    [Parameter] public List<Post> Posts { get; set; }
+    public List<Post> SortedPosts { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        SortedPosts = Posts.OrderBy(x => x.DatePosted).ToList();
+    }
+
+
 }

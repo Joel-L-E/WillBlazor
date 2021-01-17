@@ -5,67 +5,85 @@
 @inject SignOutSessionStateManager SignOutManager
 
 
-<nav class="navbar navbar-expand-sm fixed-top" style="justify-content:center; background-color:#FB4F14;">
-        <a href="#" class="navbar-brand"><img class="navbar-brand" src="https://image.shutterstock.com/image-vector/wb-letter-logo-design-template-260nw-1139570480.jpg" style="width:10rem; height:3.1rem;" /></a>
+<style>
+    .btn-outline-light:hover{
+        color:black;
+    }
+</style>
+
+<nav class="navbar navbar-expand-sm fixed-top" style="justify-content:center; background-color:#0e1111;">
+        <a href="#" class="navbar-brand"><img class="navbar-brand" src="https://i.postimg.cc/pX8B6S8k/WB-logo.png" /></a>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <NavLink class="nav-link" href="bengals/index">
-                    <button type="button" class="btn btn-outline-light" style="color:black">
+                    <button type="button" class="btn btn-outline-secondary" style="color:white">
                         <strong style="font-size:1.45rem;">Bengals</strong>
                     </button>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="reds/index">
-                    <button type="button" class="btn btn-outline-light" style="color:black">
+                    <button type="button" class="btn btn-outline-secondary" style="color:white">
                         <strong style="font-size:1.45rem;">Reds</strong>
                     </button>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="raiders/index">
-                    <button type="button" class="btn btn-outline-light" style="color:black">
+                    <button type="button" class="btn btn-outline-secondary" style="color:white">
                         <strong style="font-size:1.45rem;">WSU</strong>
                     </button>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="cavaliers/index">
-                    <button type="button" class="btn btn-outline-light" style="color:black">
+                    <button type="button" class="btn btn-outline-secondary" style="color:white">
                         <strong style="font-size:1.45rem;">Cavaliers</strong>
                     </button>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="hawkeyes/index">
-                    <button type="button" class="btn btn-outline-light" style="color:black">
+                    <button type="button" class="btn btn-outline-secondary" style="color:white">
                         <strong style="font-size:1.45rem;">Hawkeyes</strong>
                     </button>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="#">
-                    <button type="button" class="btn btn-outline-light" style="color:black">
+                    <button type="button" class="btn btn-outline-secondary" style="color:white">
                         <strong style="font-size:1.45rem;">All Articles</strong>
                     </button>
                 </NavLink>
             </li>
-        </ul>
-        
-        <ul class="navbar-nav text-right">
-            <li style="float:right;">
-                <AuthorizeView>
-                    <Authorized>
-                        <a href="authentication/profile">Hello, @context.User.Identity.Name!</a>
-                        <button class="nav-link btn btn-dark" @onclick="BeginSignOut">Log out</button>
-                    </Authorized>
-                    <NotAuthorized>
-                        <button class="btn btn-dark" href="authentication/register">Register</button>
-                        <button class="btn btn-dark" href="authentication/login">Log In</button>
-
-                    </NotAuthorized>
-                </AuthorizeView>
-            </li>
+            <AuthorizeView>
+                <Authorized>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="authentication/register">
+                            <button class="btn btn-outline-secondary" href="authentication/profile"><strong>Hello, @context.User.Identity.Name!</strong></button>
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-outline-secondary" @onclick="BeginSignOut"><strong>Log out</strong></button>
+                    </li>
+                </Authorized>
+                <NotAuthorized>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="authentication/register">
+                            <button type="button" class="btn btn-outline-secondary" style="color:black">
+                                <strong style="font-size:1.45rem;">Register</strong>
+                            </button>
+                        </NavLink> 
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="authentication/login">
+                            <button type="button" class="btn btn-outline-secondary" style="color:black">
+                                <strong style="font-size:1.45rem;">Login</strong>
+                            </button>
+                        </NavLink>
+                    </li>
+                </NotAuthorized>
+            </AuthorizeView>
         </ul>
 </nav>
 

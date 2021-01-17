@@ -1,5 +1,35 @@
-﻿<h3>BengalsArticle</h3>
+﻿@page "/reds/article/{ArticleId:int}"
+
+@using WillBlazor.Shared.ApiHelpers
+
+
+@if (Post != null && Post.Section == "reds")
+{
+    <div class="container">
+        <br />
+        <br />
+        <div class="float-left text-center" style="width:50%;">
+            <ArticleContent PostId="@ArticleId" />
+        </div>
+        <div class="float-left text-center" style="width:35%; margin-left: 10px;">
+            <ArticleSidebar />
+        </div>
+    </div>
+}
+else
+{
+    <Text>Loading Article...</Text>
+}
+
 
 @code {
+    [Parameter] public int ArticleId { get; set; }
+    public static int ArtId { get; set; }
+    public Post Post { get; set; }
 
+    protected async override Task OnInitializedAsync()
+    {
+        ArtId = ArticleId;
+        Post = await PostApiHelper.GetPostAsync(ArtId);
+    }
 }

@@ -1,5 +1,34 @@
 ﻿@page "/raiders/index"
-<IndexArticleView />
+@inject IPostRepository postRepo
+@inject NavigationManager navMan
+@using WillBlazor.Shared.ApiHelpers
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+
+@if (Articles != null)
+{
+    <IndexArticleView Posts="@Articles" />
+}
+
+
 @code {
+
+    public List<Post> Articles;
+
+    protected async override Task OnInitializedAsync()
+    {
+        try
+        {
+            Articles = await PostApiHelper.GetRaidersPostsAsync();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+
+    }
+
 
 }

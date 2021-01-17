@@ -1,10 +1,22 @@
 ﻿@page "/"
-@using System.Text.Json
+@using WillBlazor.Shared.ApiHelpers
 
 
+ @if(Postt != null)
+ {
+     foreach(var p in Postt)
+     {
+         
+        <p>@p.Id</p>
+     }
+ }
 
+@code{      
+    public static int id;
+    public List<Post> Postt { get; set; } = new List<Post>();
 
-@code{
-
-   
+    protected async override Task OnInitializedAsync()
+    {
+        Postt = await PostApiHelper.GetBengalsPostsAsync();
+    }
 }

@@ -1,4 +1,4 @@
-﻿@page "/bengals/index"
+﻿@page "/browns/index"
 @inject IPostRepository postRepo
 @inject NavigationManager navMan
 @using WillBlazor.Shared.ApiHelpers 
@@ -20,7 +20,7 @@
         {
             try
             {
-                Articles = await PostApiHelper.GetBengalsPostsAsync();
+                Articles = await PostApiHelper.GetBrownsPostsAsync();
             }
             catch(AccessTokenNotAvailableException exception)
             {

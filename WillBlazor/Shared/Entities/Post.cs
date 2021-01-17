@@ -25,6 +25,9 @@ namespace WillBlazor.Shared.Entities
         public string Section { get; set; }
         [JsonPropertyName("summary")]
         public string Summary { get; set; }
+        [JsonPropertyName("thumbnail")]
+        public string Thumbnail { get; set; }
+
 
         public Post()
         {
