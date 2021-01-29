@@ -1,22 +1,7 @@
 ﻿@page "/"
-@using WillBlazor.Shared.ApiHelpers
 
-
- @if(Postt != null)
- {
-     foreach(var p in Postt)
-     {
-         
-        <p>@p.Id</p>
-     }
- }
+<ViewPictures />
 
 @code{      
-    public static int id;
-    public List<Post> Postt { get; set; } = new List<Post>();
-
-    protected async override Task OnInitializedAsync()
-    {
-        Postt = await PostApiHelper.GetBengalsPostsAsync();
-    }
+    
 }

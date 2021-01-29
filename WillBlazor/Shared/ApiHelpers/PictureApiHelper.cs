@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WillBlazor.Shared.Entities;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace WillBlazor.Shared.ApiHelpers
 {
@@ -18,8 +19,17 @@ namespace WillBlazor.Shared.ApiHelpers
             var client = new HttpClient();
             Url += id.ToString();
             string json = await client.GetStringAsync(Url);
-            var picture = JsonSerializer.Deserialize<Picture>(json); ;
+            var picture = JsonConvert.DeserializeObject<Picture>(json); ;
             return picture;
         }
+
+        public static async Task<List<Picture>> GetPicturesAsync()
+        {
+            HttpClient client = new HttpClient();
+            string json = await client.GetStringAsync(Url);
+            var pictures = JsonConvert.DeserializeObject<List<Picture>>(json);
+            return pictures;
+        }
+
     }
 }

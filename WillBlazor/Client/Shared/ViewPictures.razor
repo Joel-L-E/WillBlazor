@@ -1,0 +1,21 @@
+﻿@if(Pictures != null)
+{
+    foreach (var p in Pictures)
+    {
+        string css = PictureResizer.GetStyledSize(p.WidthPx, p.HeightPx);
+
+        <div>
+            <img style="max-width: 100%;min-width:300px;height:auto;" src="@p.PictureUrl" />
+            <p><strong>Picture ID: </strong>@p.Id</p>
+        </div>
+    }
+}
+
+@code {
+    public List<Picture> Pictures { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Pictures = await PictureApiHelper.GetPicturesAsync();
+    }
+}

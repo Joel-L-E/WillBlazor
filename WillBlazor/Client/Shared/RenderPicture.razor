@@ -4,8 +4,8 @@
 
 @if (Picture != null)
 {
-    <div style="width:50%;height: 400px;margin:auto">
-        <img style="height:100%;width:100%;" src="@Picture.PictureUrl" />
+    <div class="container">
+        <img style="width:40rem;" src="@Picture.PictureUrl" />
     </div>
         
 }
@@ -18,7 +18,6 @@
 
     protected async override Task OnInitializedAsync()
     {
-
         Picture = await PictureApiHelper.GetPictureAsync(PictureId);
     }
 }

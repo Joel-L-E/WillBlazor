@@ -6,91 +6,139 @@
 
 
 <style>
-    .btn-outline-light:hover{
-        color:black;
+    .btn-outline-light:hover {
+        color: black;
     }
 </style>
 
-<nav class="navbar navbar-expand-sm fixed-top" style="justify-content:center; background-color:#0e1111;">
-        <a href="#" class="navbar-brand"><img class="navbar-brand" src="https://i.postimg.cc/pX8B6S8k/WB-logo.png" /></a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <NavLink class="nav-link" href="bengals/index">
-                    <button type="button" class="btn btn-outline-secondary" style="color:white">
-                        <strong style="font-size:1.45rem;">Bengals</strong>
-                    </button>
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="nav-link" href="reds/index">
-                    <button type="button" class="btn btn-outline-secondary" style="color:white">
-                        <strong style="font-size:1.45rem;">Reds</strong>
-                    </button>
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="nav-link" href="raiders/index">
-                    <button type="button" class="btn btn-outline-secondary" style="color:white">
-                        <strong style="font-size:1.45rem;">WSU</strong>
-                    </button>
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="nav-link" href="cavaliers/index">
-                    <button type="button" class="btn btn-outline-secondary" style="color:white">
-                        <strong style="font-size:1.45rem;">Cavaliers</strong>
-                    </button>
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="nav-link" href="hawkeyes/index">
-                    <button type="button" class="btn btn-outline-secondary" style="color:white">
-                        <strong style="font-size:1.45rem;">Hawkeyes</strong>
-                    </button>
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="nav-link" href="#">
-                    <button type="button" class="btn btn-outline-secondary" style="color:white">
-                        <strong style="font-size:1.45rem;">All Articles</strong>
-                    </button>
-                </NavLink>
-            </li>
-            <AuthorizeView>
-                <Authorized>
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="authentication/register">
-                            <button class="btn btn-outline-secondary" href="authentication/profile"><strong>Hello, @context.User.Identity.Name!</strong></button>
-                        </NavLink>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link btn btn-outline-secondary" @onclick="BeginSignOut"><strong>Log out</strong></button>
-                    </li>
-                </Authorized>
-                <NotAuthorized>
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="authentication/register">
-                            <button type="button" class="btn btn-outline-secondary" style="color:black">
-                                <strong style="font-size:1.45rem;">Register</strong>
-                            </button>
-                        </NavLink> 
-                    </li>
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="authentication/login">
-                            <button type="button" class="btn btn-outline-secondary" style="color:black">
-                                <strong style="font-size:1.45rem;">Login</strong>
-                            </button>
-                        </NavLink>
-                    </li>
-                </NotAuthorized>
-            </AuthorizeView>
-        </ul>
-</nav>
+<nav class="navbar navbar-collapse navbar-expand-lg justify-content-center w-100 fixed-top" style="background-color: #0e1111;">
+    <a href="#" class="navbar-brand"><img class="navbar-brand d-sm-block d-md-none d-lg-none d-xl-none" src="https://i.postimg.cc/pX8B6S8k/WB-logo.png" /></a>
+        <button class="navbar-toggler btn btn-outline-light" style="color:white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span style="background-color:white;" class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center d-" id="navbarSupportedContent">
+            <a href="#" class="navbar-brand"><img class="navbar-brand d-sm-none d-md-block d-lg-block d-xl-block" src="https://i.postimg.cc/pX8B6S8k/WB-logo.png" /></a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <div class="dropdown" style="margin-top:10px;">
+                        <button class="btn btn-outline-secondary dropdown-toggle" style="color:white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <strong style="font-size:1.45rem;">Teams</strong>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item">Bengals</a>
+                            <a class="dropdown-item">Reds</a>
+                            <a class="dropdown-item">Ohio State</a>
+                            <a class="dropdown-item">Cavaliers</a>
+                            <a class="dropdown-item">Wright State</a>
+                            <a class="dropdown-item">Hawkeyes</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="bengals/index">
+                        <button type="button" class="btn btn-outline-secondary" style="color:white">
+                            <strong style="font-size:1.45rem;">Bengals</strong>
+                        </button>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="reds/index">
+                        <button type="button" class="btn btn-outline-secondary" style="color:white">
+                            <strong style="font-size:1.45rem;">Reds</strong>
+                        </button>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="raiders/index">
+                        <button type="button" class="btn btn-outline-secondary" style="color:white">
+                            <strong style="font-size:1.45rem;">WSU</strong>
+                        </button>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="cavaliers/index">
+                        <button type="button" class="btn btn-outline-secondary" style="color:white">
+                            <strong style="font-size:1.45rem;">Cavaliers</strong>
+                        </button>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="hawkeyes/index">
+                        <button type="button" class="btn btn-outline-secondary" style="color:white">
+                            <strong style="font-size:1.45rem;">Hawkeyes</strong>
+                        </button>
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="#">
+                        <button type="button" class="btn btn-outline-secondary" style="color:white">
+                            <strong style="font-size:1.45rem;">All Articles</strong>
+                        </button>
+                    </NavLink>
+                </li>
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="authentication/register">
+                                <button class="btn btn-outline-secondary" style="color:white" href="authentication/profile"><strong>@context.User.Identity.Name</strong></button>
+                            </NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link btn btn-outline-secondary text" style="color:white" @onclick="BeginSignOut"><strong>Log out</strong></button>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="authentication/register">
+                                <button type="button" class="btn btn-outline-secondary" style="color:white">
+                                    <strong style="font-size:1.45rem;">Register</strong>
+                                </button>
+                            </NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="authentication/login">
+                                <button type="button" class="btn btn-outline-secondary" style="color:white">
+                                    <strong style="font-size:1.45rem;">Login</strong>
+                                </button>
+                            </NavLink>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </ul>
+
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @code{
+
+
     private async Task BeginSignOut(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
         Navigation.NavigateTo("authentication/logout");
     }
+
 }
